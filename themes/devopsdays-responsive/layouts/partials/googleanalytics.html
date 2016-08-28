@@ -11,7 +11,8 @@
 
 {{ if isset .Params "year" }}
 
-  {{ $path := split $.Source.File.Path "/" }}
+  {{ $thisPath := replace .Page.Source.File.Path "\\" "/" }}
+  {{ $path := split $thisPath "/" }}
   {{ $event_slug := index $path 1 }}
   {{ $event := (print .Params.year (lower .Params.city)) }}
   {{ $e :=  (index $.Site.Data.events $event_slug) }}
